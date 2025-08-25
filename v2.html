@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Lengkap Belajar ERPNext</title>
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #2c67f2;
+            --secondary-color: #283149;
+            --background-color: #f7f9fc;
+            --text-color: #333;
+            --card-bg-color: #ffffff;
+            --border-color: #e4e7eb;
+            --header-height: 70px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 20px);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 1.2rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Main Container Layout */
+        .container {
+            display: flex;
+            max-width: 1600px;
+            margin: 25px auto;
+            padding: 0 25px;
+            gap: 25px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            position: sticky;
+            top: calc(var(--header-height) + 25px);
+            align-self: flex-start;
+            background-color: var(--card-bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            max-height: calc(100vh - var(--header-height) - 50px);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 12px 15px;
+            color: #555;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #eef2f9;
+            color: var(--primary-color);
+        }
+
+        .sidebar ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .content {
+            flex-grow: 1;
+        }
+
+        .content section {
+            background-color: var(--card-bg-color);
+            margin-bottom: 25px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-top: 0;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .content h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content ul {
+            padding-left: 20px;
+        }
+        
+        .content li {
+            margin-bottom: 12px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+        
+        .content b, .content strong {
+            color: var(--secondary-color);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 30px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: static;
+                max-height: none;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dokumentasi Lengkap Belajar ERPNext</h1>
+    </header>
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Materi Pembelajaran</h3>
+            <ul id="nav-links">
+                <li><a href="#intro">1. Pengenalan ERPNext</a></li>
+                <li><a href="#getting-started">2. Memulai dengan ERPNext</a></li>
+                <li><a href="#doctypes">3. Memahami DocTypes</a></li>
+                <li><a href="#customize-doctypes">4. Kustomisasi DocTypes</a></li>
+                <li><a href="#import-data">5. Mengimpor Data</a></li>
+                <li><a href="#permissions">6. Peran & Izin Pengguna</a></li>
+                <li><a href="#print-format">7. Kustomisasi Format Cetak</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <!-- SECTION 1: PENGENALAN ERPNEXT -->
+            <section id="intro">
+                <h2>1. Pengenalan ERPNext</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Edj7TcLKZ2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Detail Penjelasan:</h3>
+                <p>Video ini menjelaskan bagaimana ERPNext dapat mentransformasi operasional bisnis yang kacau dan terfragmentasi menjadi sebuah sistem yang terorganisir dan terintegrasi. Tujuannya adalah memberikan <strong>pandangan 360 derajat</strong> terhadap seluruh aspek bisnis dalam satu platform.</p>
+                
+                <h3>Poin-Poin Kunci:</h3>
+                <ul>
+                    <li><strong>Solusi Holistik:</strong> ERPNext menyediakan modul yang mencakup semua kebutuhan bisnis, mulai dari Akuntansi, CRM, Penjualan, Pembelian, Sumber Daya Manusia (HR), Manufaktur, hingga Manajemen Proyek. Semua modul ini saling terhubung.</li>
+                    <li><strong>100% Open Source:</strong> Dilisensikan di bawah GNU GPL v3, yang berarti Anda memiliki kebebasan penuh untuk menggunakan, memodifikasi, dan mendistribusikan perangkat lunak ini tanpa biaya lisensi per pengguna.</li>
+                    <li><strong>Didukung Komunitas:</strong> Dibangun dan dikelola oleh komunitas global yang aktif di GitHub, memastikan pengembangan yang berkelanjutan dan perbaikan yang cepat.</li>
+                    <li><strong>Fleksibilitas Tanpa Batas:</strong> Berbeda dengan software lain, ERPNext memungkinkan kustomisasi yang mendalam tanpa memerlukan keahlian coding. Anda dapat dengan mudah:
+                        <ul>
+                            <li>Menambah atau mengubah field pada form.</li>
+                            <li>Mengganti nama dokumen (misalnya, "Sales Order" menjadi "Proforma Invoice").</li>
+                            <li>Membuat laporan kustom sesuai kebutuhan.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Fitur Tingkat Lanjut:</strong>
+                        <ul>
+                            <li><strong>Alur Kerja Persetujuan (Workflow):</strong> Membuat alur persetujuan bertingkat untuk dokumen penting seperti permintaan cuti atau pesanan pembelian di atas nilai tertentu.</li>
+                            <li><strong>Izin Granular:</strong> Mengatur hak akses hingga ke tingkat field, memastikan setiap pengguna hanya bisa melihat atau mengubah data yang relevan dengan perannya.</li>
+                            <li><strong>Multi-Perusahaan & Multi-Mata Uang:</strong> Mengelola beberapa cabang perusahaan atau entitas bisnis dengan mata uang yang berbeda dalam satu sistem.</li>
+                            <li><strong>Dasbor & Laporan Visual:</strong> Membuat dasbor yang dapat dikustomisasi untuk memantau Key Performance Indicators (KPI) secara real-time.</li>
+                            <li><strong>Akses API:</strong> Mengintegrasikan ERPNext dengan aplikasi atau layanan pihak ketiga lainnya melalui REST API.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Opsi Hosting & Impor Data:</strong> Anda bisa memilih untuk hosting di cloud (seperti Frappe Cloud, AWS, Google Cloud) atau di server Anda sendiri (on-premise). Impor data awal dari sistem lama dapat dilakukan dengan mudah menggunakan file CSV atau Excel.</li>
+                    <li><strong>Dukungan Industri Spesifik:</strong> ERPNext menyediakan fitur-fitur yang dirancang khusus untuk berbagai sektor, termasuk Manufaktur, Distribusi, Ritel, Jasa, Pertanian, Pendidikan, dan Nirlaba.</li>
+                </ul>
+            </section>
+            
+            <!-- SECTION 2: MEMULAI DENGAN ERPNEXT -->
+            <section id="getting-started">
+                <h2>2. Memulai dengan ERPNext</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/k5GaXRp1jqc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Detail Penjelasan:</h3>
+                <p>Tutorial ini memberikan panduan langkah demi langkah untuk memulai penggunaan ERPNext, menggunakan studi kasus perusahaan fiktif bernama "Nova Electronics". Tujuannya adalah agar pengguna baru dapat melakukan setup awal dan mencatat transaksi pertama mereka.</p>
+                
+                <h3>Langkah-Langkah Implementasi Awal:</h3>
+                <ol>
+                    <li><strong>Menyiapkan Perusahaan:</strong> Langkah pertama adalah membuat entitas perusahaan Anda di dalam sistem. Anda akan diminta untuk memasukkan nama perusahaan, negara, mata uang, dan informasi dasar lainnya. Setiap perusahaan akan memiliki Bagan Akun (Chart of Accounts) dan transaksi yang terpisah.</li>
+                    <li><strong>Melihat Bagan Akun (Chart of Accounts):</strong> Ini adalah daftar semua akun yang digunakan perusahaan untuk mencatat transaksi keuangan, seperti Kas, Bank, Piutang, Hutang, Pendapatan, dan Beban. ERPNext menyediakan template standar yang bisa Anda sesuaikan.</li>
+                    <li><strong>Membuat Item (Produk/Jasa):</strong> Anda perlu mendaftarkan semua produk atau jasa yang Anda jual. Setiap item akan memiliki detail seperti kode item, nama item, grup item, unit pengukuran (UOM), dan harga jual standar.</li>
+                    <li><strong>Membuat Pelanggan & Pemasok:</strong> Masukkan data master untuk semua pelanggan dan pemasok Anda. Informasi ini akan digunakan saat membuat transaksi penjualan dan pembelian.</li>
+                    <li><strong>Menggunakan "Awesome Bar":</strong> Ini adalah fitur pencarian universal di bagian atas layar. Anda bisa mengetik apa saja—nama dokumen, laporan, atau menu—untuk menavigasi sistem dengan sangat cepat.</li>
+                    <li><strong>Mencatat Transaksi Penjualan:</strong>
+                        <ul>
+                            <li><strong>Membuat Sales Order:</strong> Dokumen ini mencatat pesanan dari pelanggan. Anda akan memilih pelanggan, item yang dipesan, kuantitas, harga, dan tanggal pengiriman yang diharapkan.</li>
+                            <li><strong>Membuat Sales Invoice:</strong> Setelah barang dikirim atau jasa diberikan, Anda membuat faktur penjualan dari Sales Order yang sudah ada. Sistem akan menarik semua data secara otomatis.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Melihat Laporan Keuangan:</strong> Setelah transaksi dicatat, Anda bisa langsung melihat dampaknya pada laporan keuangan seperti Laporan Laba Rugi (Profit and Loss Statement) yang diperbarui secara real-time.</li>
+                </ol>
+            </section>
+
+            <!-- SECTION 3: MEMAHAMI DOCTYPES -->
+            <section id="doctypes">
+                <h2>3. Memahami DocTypes</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/YYYV_BbSWuw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Detail Penjelasan:</h3>
+                <p>Video ini menjelaskan konsep paling fundamental di ERPNext: <strong>DocType</strong>. DocType adalah cetak biru (blueprint) yang mendefinisikan struktur dari setiap jenis data atau dokumen di dalam sistem. Semua yang Anda lihat di ERPNext—mulai dari Faktur, Pelanggan, Item, hingga Pengguna—adalah sebuah DocType.</p>
+                
+                <h3>Konsep Inti DocType:</h3>
+                <ul>
+                    <li><strong>Blok Bangunan Dasar:</strong> Analogi yang digunakan adalah balok LEGO. Setiap DocType adalah sebuah balok dengan bentuk dan fungsi tertentu, yang kemudian dirangkai untuk membangun aplikasi yang kompleks.</li>
+                    <li><strong>Struktur Data:</strong> DocType mendefinisikan field-field (kolom data) yang ada di dalamnya, beserta tipe data (teks, angka, tanggal, dll.) dan perilakunya.</li>
+                </ul>
+
+                <h3>Studi Kasus: Membuat DocType "Umpan Balik Pelanggan"</h3>
+                <p>Tutorial ini memandu cara membuat DocType baru dari awal untuk mencatat umpan balik dari pelanggan.</p>
+                <ol>
+                    <li><strong>Membuat DocType Baru:</strong> Akses "DocType List" melalui Awesome Bar, lalu klik "Add DocType". Beri nama, misalnya "Customer Feedback", dan tautkan ke modul yang relevan, seperti CRM.</li>
+                    <li><strong>Menggunakan Form Builder:</strong> Ini adalah antarmuka visual (drag-and-drop) untuk menambahkan dan mengatur field pada DocType Anda.
+                        <ul>
+                            <li><strong>Menambah Field:</strong> Anda akan belajar menambahkan berbagai jenis field:
+                                <ul>
+                                    <li><strong>Link:</strong> Untuk menghubungkan ke DocType lain (misalnya, field "Customer" yang terhubung ke DocType "Customer").</li>
+                                    <li><strong>Date:</strong> Untuk input tanggal.</li>
+                                    <li><strong>Rating:</strong> Untuk input peringkat bintang (1-5).</li>
+                                    <li><strong>Long Text:</strong> Untuk input teks panjang atau paragraf.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mengatur Properti Field:</strong> Untuk setiap field, Anda bisa mengatur propertinya, seperti menjadikannya <strong>Wajib Diisi (Mandatory)</strong>. Field yang wajib diisi akan ditandai dengan tanda bintang merah pada form.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Menyimpan dan Melihat Hasil:</strong> Setelah DocType disimpan, ia akan langsung menjadi bagian dari sistem. Anda bisa mencarinya di Awesome Bar, membukanya, dan mulai membuat catatan baru, sama seperti DocType standar lainnya.</li>
+                </ol>
+            </section>
+
+            <!-- SECTION 4: KUSTOMISASI DOCTYPES -->
+            <section id="customize-doctypes">
+                <h2>4. Kustomisasi DocTypes</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/xNvYF6qUvjg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Detail Penjelasan:</h3>
+                <p>Setelah memahami cara membuat DocType dasar, video ini membahas teknik kustomisasi tingkat lanjut untuk membuat DocType menjadi lebih cerdas, interaktif, dan sesuai dengan alur kerja bisnis yang spesifik.</p>
+
+                <h3>Teknik Kustomisasi Lanjutan:</h3>
+                <ul>
+                    <li><strong>Naming Series (Penomoran Otomatis):</strong> Mengatur format penomoran otomatis untuk setiap dokumen baru yang dibuat. Contohnya, `CF-YYYY-MM-#####` untuk Customer Feedback, yang akan menghasilkan ID unik seperti `CF-2024-08-00001`.</li>
+                    <li><strong>Fetch Data from Linked Document:</strong> Membuat field yang secara otomatis mengambil (fetch) data dari dokumen yang terhubung. Misalnya, saat Anda memilih seorang pelanggan di form feedback, field "Email" dan "Nomor Telepon" bisa terisi otomatis dari data master pelanggan tersebut.</li>
+                    <li><strong>Dashboard & Dokumen Tertaut:</strong> Menyesuaikan dasbor pada setiap dokumen untuk menampilkan tautan cepat ke transaksi atau dokumen lain yang relevan. Misalnya, dari halaman Customer, Anda bisa membuat tombol untuk langsung melihat semua Sales Order dari pelanggan tersebut.</li>
+                    <li><strong>Conditional Fields (Bidang Bersyarat):</strong> Mengatur logika "Display Depends On" untuk membuat sebuah field hanya muncul jika kondisi tertentu terpenuhi. Contoh: field "Jelaskan Keluhan Anda" hanya akan muncul jika pengguna memilih rating 1 atau 2 bintang.</li>
+                    <li><strong>Child Table (Tabel Anak):</strong> Membuat sebuah tabel di dalam form untuk mencatat data yang berulang. Ini dilakukan dengan membuat DocType baru dan menandainya sebagai "Is Child Table". Contoh: dalam sebuah Quality Inspection, Anda bisa memiliki child table untuk mencatat daftar parameter pengecekan beserta hasilnya.</li>
+                    <li><strong>Customizing Standard DocTypes:</strong> Anda tidak hanya bisa membuat DocType baru, tetapi juga bisa memodifikasi DocType standar bawaan ERPNext menggunakan fitur "Customize Form". Misalnya, menambahkan section dan field baru untuk "Dimensi Produk" (panjang, lebar, tinggi) pada DocType "Item".</li>
+                </ul>
+            </section>
+            
+            <!-- SECTION 5: MENGIMPOR DATA -->
+            <section id="import-data">
+                <h2>5. Mengimpor Data</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/KusTqo_uFpc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Detail Penjelasan:</h3>
+                <p>Video ini menjelaskan cara efisien untuk memasukkan data dalam jumlah besar ke ERPNext dari sistem lama atau spreadsheet menggunakan alat <strong>Data Import</strong>.</p>
+
+                <h3>Proses Impor Data:</h3>
+                <ol>
+                    <li><strong>Akses Alat Impor Data:</strong> Cari "Data Import" di Awesome Bar.</li>
+                    <li><strong>Pilih Jenis Dokumen:</strong> Tentukan DocType mana yang ingin Anda impor datanya (misalnya, "Item", "Customer", "Sales Invoice").</li>
+                    <li><strong>Pilih Aksi:</strong>
+                        <ul>
+                            <li><strong>Insert New Records:</strong> Untuk memasukkan data baru.</li>
+                            <li><strong>Update Existing Records:</strong> Untuk memperbarui data yang sudah ada.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Unduh Template:</strong> Klik "Download Template". Anda bisa memilih field mana saja yang ingin disertakan dalam template. Disarankan untuk hanya memilih field yang wajib diisi dan yang relevan untuk mempercepat proses.</li>
+                    <li><strong>Isi Template:</strong> Buka file Excel atau CSV yang telah diunduh, lalu isi dengan data Anda. Pastikan format data sesuai (misalnya, format tanggal).</li>
+                    <li><strong>Unggah File:</strong> Kembali ke alat Data Import, lampirkan file yang sudah diisi, lalu klik "Start Import".</li>
+                    <li><strong>Validasi dan Hasil:</strong> Sistem akan memvalidasi data Anda. Jika ada kesalahan, sistem akan memberikan laporan error yang detail. Data yang valid akan berhasil diimpor.</li>
+                </ol>
+                
+                <h3>Metode Alternatif: Google Sheets</h3>
+                <p>Selain menggunakan file Excel/CSV, Anda juga bisa menempelkan URL dari Google Sheet publik. Keuntungannya adalah jika ada data yang salah, Anda bisa memperbaikinya langsung di Google Sheet dan me-refresh halaman impor tanpa perlu mengunggah ulang file.</p>
+                
+                <h3>Praktik Terbaik:</h3>
+                <p>Sebelum melakukan impor data massal, sangat disarankan untuk mencoba memasukkan 1-2 data secara manual melalui antarmuka pengguna. Ini akan membantu Anda memahami field mana yang wajib diisi dan bagaimana struktur datanya seharusnya.</p>
+            </section>
+
+            <!-- SECTION 6: PERAN & IZIN PENGGUNA -->
+            <section id="permissions">
+                <h2>6. Peran & Izin Pengguna</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/uRMvS3e954E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Detail Penjelasan:</h3>
+                <p>Keamanan dan kontrol akses data sangat penting. Video ini membahas sistem perizinan berlapis (layered permission system) di ERPNext yang sangat fleksibel untuk memastikan setiap pengguna hanya dapat mengakses data yang menjadi haknya.</p>
+
+                <h3>Lapisan-Lapisan Izin di ERPNext:</h3>
+                <ol>
+                    <li><strong>Role-Based Permissions (Izin Berbasis Peran):</strong> Ini adalah lapisan pertama dan paling dasar. Anda membuat Peran (Role) seperti "Sales Manager", "Accountant", atau "HR Executive". Kemudian, untuk setiap peran, Anda menentukan DocType apa saja yang bisa mereka akses (baca, tulis, buat, hapus, dll.).
+                        <br><em>Contoh: Peran "Sales User" hanya diberi akses ke DocType "Customer", "Quotation", dan "Sales Order".</em>
+                    </li>
+                    <li><strong>Document-Based Permissions (Izin Berbasis Dokumen):</strong> Juga dikenal sebagai "User Permissions". Lapisan ini membatasi akses pengguna ke <strong>dokumen/catatan spesifik</strong> di dalam sebuah DocType.
+                        <br><em>Contoh: Seorang Sales User bernama Alex diatur agar hanya bisa melihat dan mengedit data pelanggan dari teritori "Jakarta". Dia tidak akan bisa melihat data pelanggan dari teritori "Surabaya", meskipun dia memiliki akses ke DocType "Customer".</em>
+                    </li>
+                    <li><strong>Field-Based Permissions (Izin Berbasis Field):</strong> Ini adalah lapisan paling detail. Anda bisa menyembunyikan <strong>field spesifik</strong> di dalam sebuah form dari peran tertentu menggunakan "Permission Level".
+                        <br><em>Contoh: Pada Sales Invoice, hanya peran "Account Manager" (Permission Level 1) yang bisa melihat field "Margin Keuntungan", sementara "Sales User" (Permission Level 0) tidak bisa melihatnya.</em>
+                    </li>
+                    <li><strong>Permissions for Pages and Reports:</strong> Anda juga dapat mengontrol peran mana yang diizinkan untuk mengakses halaman Workspace atau Laporan tertentu.
+                        <br><em>Contoh: Laporan "Neraca Keuangan" hanya bisa diakses oleh peran "Accountant" dan "Auditor".</em>
+                    </li>
+                    <li><strong>Temporary Sharing (Berbagi Sementara):</strong> Fitur "Share" memungkinkan Anda memberikan akses baca/tulis sementara ke satu dokumen spesifik kepada pengguna lain, tanpa harus mengubah pengaturan peran mereka secara permanen. Sangat berguna untuk kolaborasi kasuistis.</li>
+                </ol>
+            </section>
+            
+            <!-- SECTION 7: KUSTOMISASI FORMAT CETAK -->
+            <section id="print-format">
+                <h2>7. Kustomisasi Format Cetak</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/uFpf6qu8SdU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Detail Penjelasan:</h3>
+                <p>Video ini menunjukkan cara mengubah tampilan dokumen yang akan dicetak atau dikirim sebagai PDF, seperti Faktur, Purchase Order, atau Delivery Note, agar sesuai dengan branding perusahaan Anda menggunakan alat <strong>Print Format Builder</strong> dan <strong>Print Designer</strong>.</p>
+                
+                <h3>Langkah-Langkah Kustomisasi Format Cetak:</h3>
+                <ol>
+                    <li><strong>Membuat Format Cetak Baru:</strong> Template standar tidak bisa diedit secara langsung. Praktik terbaik adalah <strong>menduplikasi</strong> format cetak standar yang ada, lalu memberinya nama baru.</li>
+                    <li><strong>Menggunakan Print Designer:</strong> Ini adalah editor visual yang memungkinkan Anda untuk:
+                        <ul>
+                            <li><strong>Mengubah Header:</strong> Mengganti logo perusahaan, menyesuaikan alamat, dan mengatur tata letak informasi di bagian atas dokumen.</li>
+                            <li><strong>Mengubah Footer:</strong> Menambahkan informasi seperti detail bank, syarat dan ketentuan, atau tanda tangan digital di bagian bawah.</li>
+                            <li><strong>Menyesuaikan Tabel Item:</strong> Menambah, menghapus, atau mengubah urutan kolom dalam tabel rincian produk/jasa. Misalnya, menambahkan kolom "Nomor Seri" atau "Gambar Produk".</li>
+                            <li><strong>Menambah Field Kustom:</strong> Menampilkan data dari field kustom yang telah Anda tambahkan ke DocType.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Menggunakan HTML & Jinja Templating:</strong> Untuk kustomisasi yang lebih kompleks, Anda bisa beralih ke mode HTML. Di sini Anda bisa menggunakan sintaks Jinja untuk menambahkan logika kondisional (misalnya, "tampilkan watermark 'LUNAS' jika status dokumen sudah dibayar").</li>
+                    <li><strong>Pengaturan Cetak (Print Settings):</strong> Di sini Anda bisa mengatur properti global untuk pencetakan, seperti:
+                        <ul>
+                            <li>Mengatur format cetak default untuk setiap jenis dokumen.</li>
+                            <li>Ukuran halaman (A4, Letter, dll.).</li>
+                            <li>Menyertakan kop surat perusahaan secara default.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Gaya Cetak (Print Styles):</strong> ERPNext menyediakan beberapa tema visual (Classic, Modern, Monochrome). Anda juga bisa membuat gaya cetak sendiri dengan menambahkan CSS kustom untuk mengubah font, warna, dan spasi sesuai dengan identitas brand Anda.</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>Dokumentasi ini dibuat untuk mempermudah pembelajaran ERPNext. Semua materi bersumber dari channel YouTube Frappe School.</p>
+    </footer>
+
+    <script>
+        // Script to handle active link highlighting on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.content section');
+            const navLinks = document.querySelectorAll('.sidebar ul li a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4 // Trigger when 40% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
