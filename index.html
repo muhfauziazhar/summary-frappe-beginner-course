@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Lengkap Kursus Frappe Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .content-section:target {
+        animation: highlight 1.5s ease-out;
+      }
+      @keyframes highlight {
+        from {
+          background-color: rgba(250, 204, 21, 0.3);
+        }
+        to {
+          background-color: transparent;
+        }
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #94a3b8;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+      }
+      details > summary {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800">
+    <div class="flex min-h-screen">
+      <!-- Sidebar Navigation -->
+      <aside class="w-72 bg-white border-r border-slate-200 p-6 fixed h-full overflow-y-auto hidden lg:block">
+        <h2 class="text-lg font-bold text-slate-900 mb-4">Daftar Isi</h2>
+        <nav>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#pendahuluan" class="text-slate-600 hover:text-blue-600 font-medium">1. Pendahuluan</a></li>
+            <li><a href="#instalasi" class="text-slate-600 hover:text-blue-600 font-medium">2. Instalasi & Setup</a></li>
+            <li>
+              <details open>
+                <summary class="font-medium text-slate-600 hover:text-blue-600">3. Konsep Inti: DocType</summary>
+                <ul class="pl-4 mt-2 space-y-2 border-l border-slate-200">
+                  <li><a href="#doctype-pembuatan" class="text-slate-500 hover:text-blue-600">3.1 Pembuatan & Tipe Field</a></li>
+                  <li><a href="#doctype-properti" class="text-slate-500 hover:text-blue-600">3.2 Properti Field</a></li>
+                  <li><a href="#doctype-jenis" class="text-slate-500 hover:text-blue-600">3.3 Jenis-jenis DocType</a></li>
+                  <li><a href="#doctype-penamaan" class="text-slate-500 hover:text-blue-600">3.4 Penamaan Dokumen</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details open>
+                <summary class="font-medium text-slate-600 hover:text-blue-600">4. Client-Side Scripting</summary>
+                <ul class="pl-4 mt-2 space-y-2 border-l border-slate-200">
+                  <li><a href="#client-script-dasar" class="text-slate-500 hover:text-blue-600">4.1 Dasar & Events</a></li>
+                  <li><a href="#client-script-manipulasi" class="text-slate-500 hover:text-blue-600">4.2 Manipulasi Form</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details open>
+                <summary class="font-medium text-slate-600 hover:text-blue-600">5. Server-Side Scripting</summary>
+                <ul class="pl-4 mt-2 space-y-2 border-l border-slate-200">
+                  <li><a href="#server-script-dasar" class="text-slate-500 hover:text-blue-600">5.1 Dasar & Hooks</a></li>
+                  <li><a href="#server-script-api" class="text-slate-500 hover:text-blue-600">5.2 Metode API Frappe</a></li>
+                  <li><a href="#server-script-panggil" class="text-slate-500 hover:text-blue-600">5.3 Memanggil dari Client</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="#ui-lanjutan" class="text-slate-600 hover:text-blue-600 font-medium">6. UI & Fitur Lanjutan</a></li>
+            <li><a href="#reporting" class="text-slate-600 hover:text-blue-600 font-medium">7. Pelaporan (Reporting)</a></li>
+            <li><a href="#print-format" class="text-slate-600 hover:text-blue-600 font-medium">8. Format Cetak</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="lg:ml-72 flex-1 p-6 md:p-10">
+        <div class="max-w-4xl mx-auto">
+          <header class="mb-12 text-center">
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Panduan Lengkap Kursus Frappe Framework</h1>
+            <p class="text-lg text-slate-500">Rangkuman komprehensif dari konsep dasar hingga fitur lanjutan dengan video tersemat.</p>
+          </header>
+
+          <!-- Section 1: Pendahuluan -->
+          <section id="pendahuluan" class="mb-12 p-6 bg-white rounded-lg shadow-sm content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-b pb-2">1. Pendahuluan & Konsep Dasar</h2>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Apa itu Frappe Framework & ERPNext?</h3>
+                <p class="mb-4">
+                  <strong>Frappe Framework</strong> adalah platform "batteries-included" yang memungkinkan pengembangan aplikasi web berbasis database dengan
+                  cepat. Dibangun dengan Python & JavaScript, ia menyediakan fitur-fitur siap pakai seperti ORM, sistem otentikasi, UI admin, dan banyak lagi.
+                  <strong>ERPNext</strong> adalah produk unggulan yang dibangun di atas Frappe, sebuah solusi ERP open-source yang lengkap untuk manajemen
+                  bisnis.
+                </p>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/OQDHVEprdzE"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Struktur Direktori</h3>
+                <p class="mb-4">
+                  Memahami struktur direktori adalah kunci. Saat Anda menginisialisasi <strong>Frappe Bench</strong>, direktori berikut akan dibuat. Setiap
+                  aplikasi yang Anda buat atau instal akan memiliki struktur internalnya sendiri, termasuk folder untuk modul, doctype, halaman, dan laporan.
+                </p>
+                <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                  <li><code>/apps</code>: Tempat semua aplikasi (termasuk Frappe & ERPNext) berada.</li>
+                  <li>
+                    <code>/sites</code>: Berisi semua situs yang Anda buat, termasuk file konfigurasi (<code>site_config.json</code>), aset publik, dan file
+                    pribadi.
+                  </li>
+                  <li><code>/logs</code>: Berisi file log untuk debugging (misalnya, <code>web.log</code>, <code>worker.log</code>).</li>
+                  <li><code>/env</code>: Lingkungan virtual Python yang mengisolasi dependensi proyek.</li>
+                </ul>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/1BAVfmJPkA8"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: Instalasi -->
+          <section id="instalasi" class="mb-12 p-6 bg-white rounded-lg shadow-sm content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-b pb-2">2. Instalasi & Pengaturan Awal</h2>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Instalasi Frappe Bench</h3>
+                <p class="mb-4">
+                  Proses instalasi manual di Ubuntu 20.04 melibatkan beberapa prasyarat penting. Pastikan semua dependensi ini terinstal dengan benar sebelum
+                  menginstal <code>frappe-bench</code>.
+                </p>
+                <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                  <li>Dependensi Sistem: <code>git</code>, <code>python3-dev</code>, <code>python3-pip</code>, <code>python3.8-venv</code></li>
+                  <li>Database: MariaDB Server</li>
+                  <li>Caching & Antrian: Redis Server</li>
+                  <li>JavaScript Runtime: Node.js & Yarn</li>
+                  <li>Lainnya: <code>wkhtmltopdf</code> untuk konversi PDF</li>
+                </ul>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/kWVGHArPtvw"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Inisialisasi Proyek & Perintah Penting</h3>
+                <p class="mb-4">Setelah bench terinstal, Anda dapat memulai proyek baru, membuat situs, dan menginstal aplikasi seperti ERPNext.</p>
+                <pre class="bg-slate-100 p-4 rounded-md text-sm overflow-x-auto mb-4"><code># 1. Inisialisasi direktori bench
+bench init frappe-bench --frappe-branch version-13
+
+# 2. Pindah ke direktori bench
+cd frappe-bench
+
+# 3. Buat situs baru (akan meminta password admin)
+bench new-site nama.situs.anda
+
+# 4. Unduh aplikasi ERPNext
+bench get-app erpnext --branch version-13
+
+# 5. Instal ERPNext ke situs Anda
+bench --site nama.situs.anda install-app erpnext
+
+# 6. Jalankan server pengembangan
+bench start</code></pre>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/8EOMxXrLpAM"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: DocType -->
+          <section id="doctype" class="mb-12 content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 p-6 bg-white rounded-lg shadow-sm">3. Konsep Inti: DocType</h2>
+
+            <div id="doctype-pembuatan" class="p-6 bg-white rounded-lg shadow-sm mb-6">
+              <h3 class="text-xl font-semibold mb-2">3.1 Pembuatan & Tipe Field</h3>
+              <p class="mb-4">
+                DocType adalah cetak biru (blueprint) dari model data di Frappe. Setiap entitas (misalnya, ToDo, Sales Invoice) didefinisikan sebagai DocType,
+                yang kemudian akan membuat tabel di database. Anda dapat membuat DocType baru dari menu "Build".
+              </p>
+              <div class="aspect-w-16 aspect-h-9 mb-4">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/kWpPSy7Js4o"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="mb-4">Frappe menyediakan berbagai tipe field untuk menangani berbagai jenis data, seperti:</p>
+              <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                <li><strong>Data</strong>: Teks singkat (string).</li>
+                <li><strong>Link</strong>: Referensi ke DocType lain (foreign key).</li>
+                <li><strong>Table</strong>: Untuk menyematkan Child DocType.</li>
+                <li><strong>Select</strong>: Pilihan dropdown.</li>
+                <li><strong>Date</strong>, <strong>Currency</strong>, <strong>Checkbox</strong>, <strong>Attach Image</strong>, dll.</li>
+              </ul>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/ut1-Kp5JqOk"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div id="doctype-properti" class="p-6 bg-white rounded-lg shadow-sm mb-6">
+              <h3 class="text-xl font-semibold mb-2">3.2 Properti Field</h3>
+              <p class="mb-4">
+                Setiap field dapat dikustomisasi lebih lanjut dengan properti untuk mengontrol perilakunya di UI. Properti yang paling umum digunakan antara
+                lain:
+              </p>
+              <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                <li><strong>Mandatory</strong>: Field harus diisi.</li>
+                <li><strong>Read Only</strong>: Field tidak dapat diedit.</li>
+                <li><strong>Hidden</strong>: Field tidak ditampilkan di form.</li>
+                <li><strong>Default</strong>: Nilai awal untuk field.</li>
+                <li><strong>In List View</strong>: Tampilkan field ini di tampilan daftar.</li>
+                <li>
+                  <strong>Depends On</strong>: Tampilkan/sembunyikan field berdasarkan kondisi dari field lain. Contoh: <code>eval:doc.status=="Open"</code>
+                </li>
+              </ul>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/lxVDRjNHMw0"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div id="doctype-jenis" class="p-6 bg-white rounded-lg shadow-sm mb-6">
+              <h3 class="text-xl font-semibold mb-2">3.3 Jenis-jenis DocType</h3>
+              <p class="mb-4">Frappe memiliki beberapa jenis DocType untuk kasus penggunaan yang berbeda:</p>
+              <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                <li><strong>Standard</strong>: DocType biasa yang dapat dibuat, dibaca, diperbarui, dan dihapus (CRUD).</li>
+                <li>
+                  <strong>Submittable</strong>: Dokumen yang memiliki alur kerja "Draft -> Submitted -> Cancelled". Setelah di-submit, dokumen menjadi
+                  read-only. Contoh: Sales Invoice.
+                </li>
+                <li><strong>Single</strong>: Hanya ada satu dokumen untuk DocType ini. Berguna untuk menyimpan pengaturan global. Contoh: System Settings.</li>
+                <li>
+                  <strong>Child Table</strong>: DocType yang tidak dapat berdiri sendiri dan harus disematkan di dalam DocType lain menggunakan field tipe
+                  "Table".
+                </li>
+              </ul>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/zRI8Rb1i204"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div id="doctype-penamaan" class="p-6 bg-white rounded-lg shadow-sm">
+              <h3 class="text-xl font-semibold mb-2">3.4 Penamaan Dokumen</h3>
+              <p class="mb-4">ID unik setiap dokumen dapat diatur secara otomatis. Opsi penamaan (ditemukan di pengaturan DocType) meliputi:</p>
+              <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                <li><strong>Naming Series</strong>: Format penamaan yang paling umum, menggunakan awalan dan nomor urut (misal: INV-.YYYY.-.#####).</li>
+                <li><strong>Berdasarkan Field</strong>: Nama dokumen diambil dari nilai salah satu field-nya.</li>
+                <li><strong>Berdasarkan Prompt</strong>: Pengguna diminta memasukkan nama secara manual.</li>
+                <li><strong>Format Kustom</strong>: Kombinasi teks, field, dan seri (misal: <code>PO-{MM}-{supplier_abbr}-.###</code>).</li>
+              </ul>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/vtMNnneMlxk"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: Client-Side Scripting -->
+          <section id="client-script" class="mb-12 content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 p-6 bg-white rounded-lg shadow-sm">4. Client-Side Scripting (JavaScript)</h2>
+
+            <div id="client-script-dasar" class="p-6 bg-white rounded-lg shadow-sm mb-6">
+              <h3 class="text-xl font-semibold mb-2">4.1 Dasar & Events</h3>
+              <p class="mb-4">
+                Menambahkan interaktivitas dan logika bisnis di sisi browser menggunakan JavaScript. Skrip ditulis dalam file
+                <code>[doctype_name].js</code> yang dibuat secara otomatis. Struktur dasar untuk menangani event adalah blok <code>frappe.ui.form.on</code>.
+              </p>
+              <pre class="bg-slate-100 p-4 rounded-md text-sm overflow-x-auto mb-4"><code>frappe.ui.form.on('My DocType', {
+    // Event ini berjalan saat form dimuat atau di-refresh
+    refresh: function(frm) {
+        frappe.msgprint('Form telah di-refresh!');
+    },
+    // Event ini berjalan saat nilai field 'status' berubah
+    status: function(frm) {
+        if (frm.doc.status === 'Completed') {
+            frappe.show_alert({message: 'Tugas Selesai!', indicator: 'green'});
+        }
+    },
+    // Event validasi sebelum menyimpan
+    validate: function(frm) {
+        if (frm.doc.age < 18) {
+            frappe.throw('Umur tidak boleh kurang dari 18 tahun.');
+        }
+    }
+});</code></pre>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/kbsL7v2LOUM"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div id="client-script-manipulasi" class="p-6 bg-white rounded-lg shadow-sm">
+              <h3 class="text-xl font-semibold mb-2">4.2 Manipulasi Form (frm)</h3>
+              <p class="mb-4">
+                Objek <code>frm</code> adalah kunci untuk berinteraksi dengan form saat ini. Anda dapat membaca nilai, mengatur nilai, mengubah properti field,
+                dan banyak lagi.
+              </p>
+              <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                <li><code>frm.set_value('field', 'value')</code>: Mengatur nilai field dan memicu event on_change.</li>
+                <li><code>frm.doc.field_name</code>: Mendapatkan nilai field saat ini.</li>
+                <li><code>frm.set_df_property('field', 'read_only', 1)</code>: Mengubah properti field (misal: read_only, hidden, mandatory).</li>
+                <li><code>frm.add_custom_button(...)</code>: Menambahkan tombol kustom di header form.</li>
+                <li><code>frm.add_child(...)</code>: Menambahkan baris baru ke child table.</li>
+                <li><code>frm.set_intro(...)</code>: Menampilkan pesan intro di atas form.</li>
+              </ul>
+              <div class="aspect-w-16 aspect-h-9 mb-4">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/kU2eeRXtgVI"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/BBqDrLkKawg"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5: Server-Side Scripting -->
+          <section id="server-script" class="mb-12 content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 p-6 bg-white rounded-lg shadow-sm">5. Server-Side Scripting (Python)</h2>
+
+            <div id="server-script-dasar" class="p-6 bg-white rounded-lg shadow-sm mb-6">
+              <h3 class="text-xl font-semibold mb-2">5.1 Dasar & Hooks</h3>
+              <p class="mb-4">
+                Menjalankan logika bisnis yang kompleks dan aman di sisi server menggunakan Python. Skrip ditulis dalam file <code>[doctype_name].py</code> di
+                dalam sebuah class yang mewarisi dari <code>Document</code>.
+              </p>
+              <pre class="bg-slate-100 p-4 rounded-md text-sm overflow-x-auto mb-4"><code>import frappe
+from frappe.model.document import Document
+
+class MyDocType(Document):
+    # Dijalankan sebelum dokumen disimpan (baik baru atau update)
+    def validate(self):
+        if self.age < 18:
+            frappe.throw("Umur tidak boleh kurang dari 18 tahun.")
+
+    # Dijalankan setelah dokumen di-submit
+    def on_submit(self):
+        self.status = 'Submitted'
+        frappe.msgprint(f"Dokumen {self.name} telah di-submit.")
+
+    # Dijalankan setelah dokumen dibatalkan
+    def on_cancel(self):
+        self.status = 'Cancelled'
+</code></pre>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/euVszFDxgf8"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div id="server-script-api" class="p-6 bg-white rounded-lg shadow-sm mb-6">
+              <h3 class="text-xl font-semibold mb-2">5.2 Metode API Frappe</h3>
+              <p class="mb-4">
+                Frappe menyediakan API yang kaya untuk berinteraksi dengan database dan framework. Ini memungkinkan Anda untuk membuat, membaca, memperbarui,
+                dan menghapus dokumen lain, atau mengambil data secara efisien.
+              </p>
+              <ul class="list-disc list-inside mt-2 space-y-1 mb-4">
+                <li><code>frappe.get_doc('DocType', 'name')</code>: Mengambil seluruh objek dokumen.</li>
+                <li><code>frappe.new_doc('DocType')</code>: Membuat instance dokumen baru.</li>
+                <li><code>doc.insert()</code> / <code>doc.save()</code>: Menyimpan dokumen ke database.</li>
+                <li><code>frappe.db.get_value(...)</code>: Mengambil satu nilai dari field. Sangat efisien.</li>
+                <li><code>frappe.db.set_value(...)</code>: Mengubah nilai field pada dokumen lain tanpa memuat seluruh dokumen.</li>
+                <li><code>frappe.db.get_list(...)</code>: Mengambil daftar dokumen dengan filter dan field tertentu.</li>
+              </ul>
+              <div class="aspect-w-16 aspect-h-9 mb-4">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/5oxQpMfcfgs"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="aspect-w-16 aspect-h-9 mb-4">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/NEr4JCVYuO4"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/qqWTRkasCBQ"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+
+            <div id="server-script-panggil" class="p-6 bg-white rounded-lg shadow-sm">
+              <h3 class="text-xl font-semibold mb-2">5.3 Memanggil Metode Server dari Client</h3>
+              <p class="mb-4">
+                Anda dapat membuat fungsi Python kustom dan memanggilnya dari JavaScript. Ini sangat berguna untuk menjalankan query yang kompleks atau logika
+                yang harus aman di server. Fungsi Python harus dihiasi dengan <code>@frappe.whitelist()</code>.
+              </p>
+              <pre class="bg-slate-100 p-4 rounded-md text-sm overflow-x-auto mb-4"><code># Di file .py
+@frappe.whitelist()
+def get_user_age(user_email):
+    age = frappe.db.get_value("User", user_email, "birth_date")
+    # ... logika perhitungan umur
+    return calculated_age
+
+# Di file .js
+frappe.call({
+    method: "my_app.my_module.doctype.my_doctype.my_doctype.get_user_age",
+    args: {
+        user_email: frappe.session.user
+    },
+    callback: function(r) {
+        if (r.message) {
+            frm.set_value('age', r.message);
+        }
+    }
+});</code></pre>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe
+                  class="w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/wit432ZgRDs"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 6: UI Lanjutan -->
+          <section id="ui-lanjutan" class="mb-12 p-6 bg-white rounded-lg shadow-sm content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-b pb-2">6. UI & Fitur Lanjutan</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold mb-2">Workspace</h3>
+                <p>
+                  Kustomisasi halaman utama modul dengan menambahkan pintasan ke DocType, Laporan, atau Halaman, serta kartu tautan untuk navigasi yang lebih
+                  baik.
+                </p>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/CVMbFel8m0o"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold mb-2">Dashboard</h3>
+                <p>
+                  Membuat dasbor visual dengan <strong>Number Cards</strong> untuk metrik utama dan <strong>Dashboard Charts</strong> untuk visualisasi data
+                  dari DocType atau Laporan.
+                </p>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/k0VMtTSJDhg"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold mb-2">Frappe Pages</h3>
+                <p>
+                  Membuat halaman kustom dengan HTML, CSS, dan JavaScript. Berguna untuk antarmuka yang sangat spesifik yang tidak cocok dengan model form
+                  DocType.
+                </p>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/hksJIOCMoM8"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold mb-2">Web Forms</h3>
+                <p>
+                  Mengekspos DocType sebagai formulir web yang dapat diakses publik atau oleh pengguna yang login. Lengkap dengan skrip klien dan validasi
+                  kustom.
+                </p>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/0e14YQ1clAA"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 7: Reporting -->
+          <section id="reporting" class="mb-12 p-6 bg-white rounded-lg shadow-sm content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-b pb-2">7. Pelaporan (Reporting)</h2>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Jenis Laporan</h3>
+                <p class="mb-4">
+                  Frappe menyediakan sistem pelaporan yang kuat untuk menganalisis data. Anda dapat memilih jenis laporan yang paling sesuai dengan kebutuhan
+                  Anda.
+                </p>
+                <ul class="list-disc list-inside mt-2 space-y-2">
+                  <li>
+                    <strong>Report Builder</strong>: Cara tercepat membuat laporan. Cukup pilih DocType, lalu seret dan lepas kolom yang Anda inginkan. Cocok
+                    untuk laporan sederhana.
+                  </li>
+                  <li>
+                    <strong>Query Report</strong>: Menulis kueri SQL secara langsung. Memberikan fleksibilitas maksimal untuk mengambil data dari beberapa tabel
+                    dan melakukan join.
+                  </li>
+                  <li>
+                    <strong>Script Report</strong>: Menggunakan Python untuk memproses data. Cocok untuk laporan yang memerlukan kalkulasi kompleks, panggilan
+                    API eksternal, atau manipulasi data berat sebelum ditampilkan.
+                  </li>
+                </ul>
+                <div class="aspect-w-16 aspect-h-9 mt-4">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/73aWQoYal6g"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div class="aspect-w-16 aspect-h-9 mt-4">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/oh7CGs-McN8"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Fitur Laporan Skrip</h3>
+                <p class="mb-4">
+                  Pada Laporan Skrip, Anda dapat menambahkan filter interaktif (di file <code>.js</code>), mendefinisikan kolom dan mengambil data (di file
+                  <code>.py</code>), serta menambahkan ringkasan dan bagan visual (Pie, Line, Bar) untuk membuat laporan lebih informatif.
+                </p>
+                <div class="aspect-w-16 aspect-h-9 mt-4">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/QrFpsyQhj9Q"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 8: Print Format -->
+          <section id="print-format" class="p-6 bg-white rounded-lg shadow-sm content-section">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-b pb-2">8. Format Cetak</h2>
+            <p class="mb-6">
+              Kustomisasi tampilan dokumen saat dicetak atau diunduh sebagai PDF. Penting untuk faktur, surat penawaran, dan dokumen resmi lainnya.
+            </p>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Print Format Builder</h3>
+                <p class="mb-4">
+                  Antarmuka visual (drag-and-drop) untuk mengatur tata letak. Anda dapat menambahkan/menghapus field, membuat bagian dan kolom baru, serta
+                  menambahkan HTML kustom tanpa perlu coding mendalam.
+                </p>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/zYFZVvuAfko"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Format Cetak Kustom (Jinja)</h3>
+                <p class="mb-4">
+                  Untuk kontrol penuh atas tampilan, gunakan HTML, CSS, dan Jinja templating. Dengan Jinja, Anda bisa menampilkan data dari field (<code
+                    >{{ doc.field_name }}</code
+                  >), melakukan perulangan pada tabel anak, menggunakan logika kondisional, dan menerapkan styling kustom dengan CSS.
+                </p>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/d_nBfYRe-h0"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
